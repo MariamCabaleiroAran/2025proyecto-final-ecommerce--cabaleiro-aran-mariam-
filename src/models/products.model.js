@@ -42,6 +42,7 @@ export const getProductById = async (id) => {
 };
 
 export const createProduct = async (data) => {
+  console.log('Datos recibidos en createProduct:', data);
   try {
     const docRef = await addDoc(productsCollection, data);
     return { id: docRef.id, ...data };

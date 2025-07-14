@@ -32,9 +32,9 @@ export const getProductById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
   console.log('req.body en createProduct:', req.body);
-  const { name, price, categories } = req.body;
+  const { name, price, categories, description } = req.body;
 
-  const newProduct = await model.createProduct({ name, price, categories });
+  const newProduct = await model.createProduct({ name, price, categories, description });
 
   res.status(201).json(newProduct);
 };
