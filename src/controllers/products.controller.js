@@ -6,10 +6,10 @@ export const getAllProducts = async (req, res) => {
   res.json(products);
 };
 
-export const searchProduct = (req, res) => {
+export const searchProduct = async (req, res) => {
   const { name } = req.query;
 
-  const products = model.getAllProducts();
+  const products = await model.getAllProducts();
 
   const filteredProducts = products.filter((p) =>
     p.name.toLowerCase().includes(name.toLowerCase())

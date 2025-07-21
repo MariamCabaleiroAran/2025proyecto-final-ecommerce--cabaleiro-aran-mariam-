@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Camiseta Deportiva",
-    "price": 150,
+    "price": 1500,
     "categories": ["ropa", "deportes"]
   },
   {
@@ -14,19 +14,19 @@
   {
     "id": 3,
     "name": "Mochila Escolar",
-    "price": 350,
-    "categories": ["mochilas", "escolar"]
+    "price": 3500,
+    "categories": ["accesorios", "niñes"]
   },
   {
     "id": 4,
     "name": "Auriculares Bluetooth",
-    "price": 800,
-    "categories": ["tecnología", "audio"]
+    "price": 8000,
+    "categories": ["accesorios", "audio"]
   },
   {
     "id": 5,
     "name": "Botella Térmica",
-    "price": 220,
+    "price": 2200,
     "categories": ["hogar", "accesorios"]
   }
 ]
