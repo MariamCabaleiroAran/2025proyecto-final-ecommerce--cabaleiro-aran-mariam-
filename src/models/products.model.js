@@ -18,6 +18,8 @@ import {
   addDoc,
   deleteDoc,
   setDoc,
+  query,
+  where,
 } from "firebase/firestore";
 
 const productsCollection = collection(db, "products");
@@ -41,6 +43,20 @@ export const getProductById = async (id) => {
   }
 };
 
+export async function searchProductByField (field, value) {
+  try {
+    const q = query(productsCollection, where(field, "==", value));
+    const snapshot = await getDocs(q);
+    return snapshot.docs.map((doc)  => ({
+      id: doc.id,
+    ...doc.data(),
+  }));
+  } catch (error) {
+    console.error(`Error al buscar productos por ${field}:`, error);
+    throw error;
+  }
+};
+
 export const createProduct = async (data) => {
   console.log('Datos recibidos en createProduct:', data);
   try {
@@ -51,22 +67,17 @@ export const createProduct = async (data) => {
   }
 };
 
-// PUT
-export async function updateProduct(id, productData) {
+//PUT+PATCH
+export const updateProduct = async (id, updateProductData) => {
   try {
-    const productRef = doc(productsCollection, id);
-    const snapshot = await getDoc(productRef);
-
-    if (!snapshot.exists()) {
-      return false;
-    }
-
-    await setDoc(productRef, productData); // reemplazo completo
-    return { id, ...productData };
+    const docRef = doc(productsCollection, id);
+    await setDoc(docRef, updateProductData, { merge: true }); 
+    return { id, ...updateProductData };
   } catch (error) {
     console.error(error);
+    return null;
   }
-}
+};
 
 export const deleteProduct = async (id) => {
   try {

@@ -15,6 +15,7 @@ import {
   searchProduct,
   getProductById,
   createProduct,
+  updateProduct,
   deleteProduct,
 } from "../controllers/products.controller.js";
 
@@ -26,19 +27,8 @@ router.get("/products/:id", getProductById);
 
 router.post("/products", auth, createProduct);
 
-router.put("/products/:id", (req, res) => {
-  const productId = parseInt(req.params.id, 10);
-  const productIndex = products.findIndex((p) => p.id === productId);
-
-  if (productIndex === -1) {
-    return res.status(404).json({ error: "Producto no encontrado" });
-  }
-
-  const { name, price } = req.body;
-
-  products[productIndex] = { id: productId, name, price };
-  res.json(products[productIndex]);
-});
+router.patch("/products/:id", updateProduct);
+router.put("/products/:id", updateProduct);
 
 router.delete("/products/:id", deleteProduct);
 
