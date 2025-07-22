@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "proyecto-final-ecommerce-[Cabaleiro-Aran-Mariam]" });
+  res.json({ message: "Bienvenidxs a mi Proyecto-final-Ecommerce-[Cabaleiro-Aran-Mariam]" });
 });
 
 import productsRouter from "./src/routes/products.router.js";
